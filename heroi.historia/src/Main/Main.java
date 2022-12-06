@@ -3,10 +3,8 @@ package Main;
 import Model.Heroi;
 import Model.Necromante;
 import dao.bolsaDAO;
-
 import javax.swing.*;
 
-import java.util.NoSuchElementException;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,11 +31,7 @@ public class Main {
         String menu1 = "1- INICIAR" +
                 "\n2- SAIR";
 
-        String menu2 = "ESCOLHA UMA OPCAO\n" +
-                "\n1- MOSTRAR FICHA" +
-                "\n2- ABRIR INVENTARIO" +
-                "\n3- SAIR EM AVENTURA" +
-                "\n4- Voltar a tela principal";
+        String menu2 = "ESCOLHA UMA OPCAO\n\n1- MOSTRAR FICHA\n2- ABRIR INVENTARIO\n3- SAIR EM AVENTURA\n4- Voltar a tela principal";
 
         String missao = "Sua missao e encontrar o Necromante " + necromante.getNome() + "!\n" +
                 necromante;
@@ -53,7 +47,7 @@ public class Main {
         int opcao;
         int opcao1;
         int opcao2;
-        int opcao3;
+
 
             while (progresso == 0) {
                 try {
@@ -62,105 +56,80 @@ public class Main {
 
 
                     switch (opcao) {
-                        case 1:
+                        case 1 -> {
                             progresso = progresso + 1;
                             while ((progresso != 5) && (progresso > 0) && (progresso < 6)) {
                                 try {
-                                    opcao1= Integer.parseInt(JOptionPane.showInputDialog(menu2));
+                                    opcao1 = Integer.parseInt(JOptionPane.showInputDialog(menu2));
                                     progresso = progresso + 1;
 
-                                    progresso = progresso;
-                                    switch (opcao1) {
-                                        case 1:
-                                            JOptionPane.showMessageDialog(null,heroi);
-                                            progresso = progresso;
-                                            break;
 
-                                        case 2:
-                                            JOptionPane.showMessageDialog(null,bolsaDAO.bolsa);
-                                            progresso = progresso;
-                                            break;
-                                        case 3:
-                                            JOptionPane.showMessageDialog(null,missao);
+                                    switch (opcao1) {
+                                        case 1 -> JOptionPane.showMessageDialog(null, heroi);
+                                        case 2 -> JOptionPane.showMessageDialog(null, bolsaDAO.bolsa);
+                                        case 3 -> {
+                                            JOptionPane.showMessageDialog(null, missao);
                                             progresso = 6;
                                             while (progresso == 6) {
-                                                try{
+                                                try {
                                                     System.out.println("\n");
                                                     opcao2 = Integer.parseInt(JOptionPane.showInputDialog(menu3));
 
                                                     switch (opcao2) {
-                                                        case 1:
-                                                            JOptionPane.showMessageDialog(null,heroi.ferramenta1());
-                                                            JOptionPane.showMessageDialog(null,"Voce derrotou " + necromante.getNome() + " e salvou o dia!" +
+                                                        case 1 -> {
+                                                            JOptionPane.showMessageDialog(null, heroi.ferramenta1());
+                                                            JOptionPane.showMessageDialog(null, "Voce derrotou " + necromante.getNome() + " e salvou o dia!" +
                                                                     "\n Obrigado por jogar!!");
                                                             progresso = 100;
-                                                            break;
-                                                        case 2:
-                                                            JOptionPane.showMessageDialog(null,heroi.ferramenta2());
-                                                            JOptionPane.showMessageDialog(null,"Voce derrotou " + necromante.getNome() + " e salvou o dia!" +
+                                                        }
+                                                        case 2 -> {
+                                                            JOptionPane.showMessageDialog(null, heroi.ferramenta2());
+                                                            JOptionPane.showMessageDialog(null, "Voce derrotou " + necromante.getNome() + " e salvou o dia!" +
                                                                     "\n Obrigado por jogar!!");
                                                             progresso = 100;
-                                                            break;
-                                                        case 3:
-                                                            JOptionPane.showMessageDialog(null,bolsaDAO.bolsa);
-                                                            String item =JOptionPane.showInputDialog("O que deseja utilizar?(digite o numero equivalente ao item)");
-
-
-                                                            JOptionPane.showMessageDialog(null,bolsaDAO.buscarItem(item));
-
+                                                        }
+                                                        case 3 -> {
+                                                            JOptionPane.showMessageDialog(null, bolsaDAO.bolsa);
+                                                            String item = JOptionPane.showInputDialog("O que deseja utilizar?(digite o numero equivalente ao item)");
+                                                            JOptionPane.showMessageDialog(null, bolsaDAO.buscarItem(item));
                                                             String res = necromante.getNome() + " ira usar o ataque " + necromante.getPoder1()
                                                                     + ", o que deseja fazer?" +
                                                                     "\n1-Defender" +
                                                                     "\n2-Desviar";
-
-
                                                             int opcao4 = Integer.parseInt(JOptionPane.showInputDialog(res));
-
                                                             switch (opcao4) {
-                                                                case 1:
-                                                                    JOptionPane.showMessageDialog(null,heroi.defender());
-                                                                    progresso = 6;
-                                                                    break;
-                                                                case 2:
-                                                                    JOptionPane.showMessageDialog(null,heroi.esquivar());
-                                                                    progresso = 6;
-                                                                    break;
-                                                                default:
-                                                                    JOptionPane.showMessageDialog(null,"Insira um valor valido!");
-                                                                    break;
+                                                                case 1 -> JOptionPane.showMessageDialog(null, heroi.defender());
+                                                                case 2 -> JOptionPane.showMessageDialog(null, heroi.esquivar());
+                                                                default ->
+                                                                        JOptionPane.showMessageDialog(null, "Insira um valor valido!");
                                                             }
+                                                        }
                                                     }
-                                                }catch (NoSuchElementException e) {
-                                                    JOptionPane.showMessageDialog(null,"Insira um valor valido");
-                                                    continue;
+                                                } catch (NumberFormatException e) {
+                                                    JOptionPane.showMessageDialog(null, "Insira um valor valido");
                                                 }
                                             }
-                                            break;
-                                        case 4:
-                                            progresso = 0;
-                                            break;
-                                        default:
-                                            JOptionPane.showMessageDialog(null,"Insira um valor valido");
+                                        }
+                                        case 4 -> progresso = 0;
+                                        default -> JOptionPane.showMessageDialog(null, "Insira um valor valido");
                                     }
-                                }catch (NoSuchElementException e){
-                                    JOptionPane.showMessageDialog(null,"Insira um valor valido");
-                                    continue;
+                                } catch (NumberFormatException e) {
+                                    JOptionPane.showMessageDialog(null, "Insira um valor valido");
                                 }
                             }
-                            break;
-
-                        case 2:
-                            JOptionPane.showMessageDialog(null,"Obrigado por jogar:");
-                            progresso = +1;
-                            break;
-                        default:
-                            JOptionPane.showMessageDialog(null,"Insira um valor valido");
-                            progresso = +1;
-                            break;
+                        }
+                        case 2 -> {
+                            JOptionPane.showMessageDialog(null, "Obrigado por jogar:");
+                            progresso+= 1;
+                        }
+                        default -> {
+                            JOptionPane.showMessageDialog(null, "Insira um valor valido");
+                            progresso +=1;
+                        }
                     }
-                }catch (NoSuchElementException e){
+                }catch (NumberFormatException e){
                     JOptionPane.showMessageDialog(null,"Insira um valor valido");
-                    continue;
+
                 }
             }
         }
