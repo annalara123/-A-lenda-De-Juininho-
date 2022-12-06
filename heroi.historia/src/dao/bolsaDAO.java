@@ -1,7 +1,6 @@
 package dao;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 public class bolsaDAO implements IBolsa {
     public HashMap<String, String> bolsa = new HashMap<>();
@@ -14,9 +13,10 @@ public class bolsaDAO implements IBolsa {
         bolsa.put(espacoInvent, nomeItem.toString());
     }
     @Override
-    public void buscarItem(String espacoInvent) {
+    public Object buscarItem(String espacoInvent) {
 
-        System.out.println("Voce utilizou " + bolsa.get(espacoInvent) + "!");
+        return "Voce utilizou " + bolsa.get(espacoInvent) + "!";
+
     }
 
 }

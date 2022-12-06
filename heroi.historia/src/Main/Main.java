@@ -3,7 +3,9 @@ package Main;
 import Model.Heroi;
 import Model.Necromante;
 import dao.bolsaDAO;
-import java.util.Scanner;
+
+import javax.swing.*;
+
 import java.util.NoSuchElementException;
 
 public class Main {
@@ -20,13 +22,13 @@ public class Main {
         bolsaDAO.addItem("1", "Pocao de cura");
         bolsaDAO.addItem("2", "Pocao de Forca");
 
-        String titulo = "     _      _                _             _            _       _       _       _           \n" +
-                "    / \\    | | ___ _ __   __| | __ _    __| | ___      | |_   _(_)_ __ (_)_ __ | |__   ___  \n" +
-                "   / _ \\   | |/ _ \\ '_ \\ / _` |/ _` |  / _` |/ _ \\  _  | | | | | | '_ \\| | '_ \\| '_ \\ / _ \\ \n" +
-                "  / ___ \\  | |  __/ | | | (_| | (_| | | (_| |  __/ | |_| | |_| | | | | | | | | | | | | (_) |\n" +
-                " /_/   \\_\\ |_|\\___|_| |_|\\__,_|\\__,_|  \\__,_|\\___|  \\___/ \\__,_|_|_| |_|_|_| |_|_| |_|\\___/ \n" +
-                "             ";
-
+        String titulo = """
+                    _      _                _             _            _       _       _       _          \s
+                   / \\    | | ___ _ __   __| | __ _    __| | ___      | |_   _(_)_ __ (_)_ __ | |__   ___ \s
+                  / _ \\   | |/ _ \\ '_ \\ / _` |/ _` |  / _` |/ _ \\  _  | | | | | | '_ \\| | '_ \\| '_ \\ / _ \\\s
+                 / ___ \\  | |  __/ | | | (_| | (_| | | (_| |  __/ | |_| | |_| | | | | | | | | | | | | (_) |
+                /_/   \\_\\ |_|\\___|_| |_|\\__,_|\\__,_|  \\__,_|\\___|  \\___/ \\__,_|_|_| |_|_|_| |_|_| |_|\\___/\s
+                           \s""".indent(1);
 
         String menu1 = "1- INICIAR" +
                 "\n2- SAIR";
@@ -48,89 +50,88 @@ public class Main {
                 "\n3-Abrir inventario: ";
 
 
+        int opcao;
+        int opcao1;
+        int opcao2;
+        int opcao3;
+
             while (progresso == 0) {
                 try {
                     System.out.println(titulo);
-                    System.out.println(menu1);
+                    opcao = Integer.parseInt(JOptionPane.showInputDialog(menu1));
 
-                    Scanner hid = new Scanner(System.in);
-                    int opcao = hid.nextInt();
 
                     switch (opcao) {
                         case 1:
                             progresso = progresso + 1;
                             while ((progresso != 5) && (progresso > 0) && (progresso < 6)) {
                                 try {
-                                    System.out.println(menu2);
+                                    opcao1= Integer.parseInt(JOptionPane.showInputDialog(menu2));
                                     progresso = progresso + 1;
-                                    hid = new Scanner(System.in);
-                                    opcao = hid.nextInt();
+
                                     progresso = progresso;
-                                    switch (opcao) {
+                                    switch (opcao1) {
                                         case 1:
-                                            System.out.println(heroi);
+                                            JOptionPane.showMessageDialog(null,heroi);
                                             progresso = progresso;
                                             break;
 
                                         case 2:
-                                            System.out.println(bolsaDAO.bolsa);
+                                            JOptionPane.showMessageDialog(null,bolsaDAO.bolsa);
                                             progresso = progresso;
                                             break;
                                         case 3:
-                                            System.out.println(missao);
+                                            JOptionPane.showMessageDialog(null,missao);
                                             progresso = 6;
                                             while (progresso == 6) {
                                                 try{
                                                     System.out.println("\n");
-                                                    System.out.println(menu3);
-                                                    hid = new Scanner(System.in);
-                                                    opcao = hid.nextInt();
-                                                    switch (opcao) {
+                                                    opcao2 = Integer.parseInt(JOptionPane.showInputDialog(menu3));
+
+                                                    switch (opcao2) {
                                                         case 1:
-                                                            heroi.ferramenta1();
-                                                            System.out.println("Voce derrotou " + necromante.getNome() + " e salvou o dia!" +
+                                                            JOptionPane.showMessageDialog(null,heroi.ferramenta1());
+                                                            JOptionPane.showMessageDialog(null,"Voce derrotou " + necromante.getNome() + " e salvou o dia!" +
                                                                     "\n Obrigado por jogar!!");
                                                             progresso = 100;
                                                             break;
                                                         case 2:
-                                                            heroi.ferramenta2();
-                                                            System.out.println("Voce derrotou " + necromante.getNome() + " e salvou o dia!" +
+                                                            JOptionPane.showMessageDialog(null,heroi.ferramenta2());
+                                                            JOptionPane.showMessageDialog(null,"Voce derrotou " + necromante.getNome() + " e salvou o dia!" +
                                                                     "\n Obrigado por jogar!!");
                                                             progresso = 100;
                                                             break;
                                                         case 3:
-                                                            System.out.println(bolsaDAO.bolsa);
-                                                            System.out.println("O que deseja utilizar?(digite o numero equivalente ao item)");
-                                                            Scanner hid2 = new Scanner(System.in);
-                                                            String item = hid2.nextLine();
+                                                            JOptionPane.showMessageDialog(null,bolsaDAO.bolsa);
+                                                            String item =JOptionPane.showInputDialog("O que deseja utilizar?(digite o numero equivalente ao item)");
 
-                                                            bolsaDAO.buscarItem(item);
 
-                                                            System.out.println(necromante.getNome() + " ira usar o ataque " + necromante.getPoder1()
+                                                            JOptionPane.showMessageDialog(null,bolsaDAO.buscarItem(item));
+
+                                                            String res = necromante.getNome() + " ira usar o ataque " + necromante.getPoder1()
                                                                     + ", o que deseja fazer?" +
                                                                     "\n1-Defender" +
-                                                                    "\n2-Desviar");
+                                                                    "\n2-Desviar";
 
 
-                                                            hid = new Scanner(System.in);
-                                                            opcao = hid.nextInt();
+                                                            int opcao4 = Integer.parseInt(JOptionPane.showInputDialog(res));
 
-                                                            switch (opcao) {
+                                                            switch (opcao4) {
                                                                 case 1:
-                                                                    heroi.defender();
+                                                                    JOptionPane.showMessageDialog(null,heroi.defender());
                                                                     progresso = 6;
                                                                     break;
                                                                 case 2:
-                                                                    heroi.esquivar();
+                                                                    JOptionPane.showMessageDialog(null,heroi.esquivar());
                                                                     progresso = 6;
                                                                     break;
                                                                 default:
-                                                                    System.out.println("Insira um valor valido!");
+                                                                    JOptionPane.showMessageDialog(null,"Insira um valor valido!");
                                                                     break;
                                                             }
                                                     }
                                                 }catch (NoSuchElementException e) {
-                                                    System.out.println("Insira um valor valido");
+                                                    JOptionPane.showMessageDialog(null,"Insira um valor valido");
                                                     continue;
                                                 }
                                             }
@@ -139,26 +140,26 @@ public class Main {
                                             progresso = 0;
                                             break;
                                         default:
-                                            System.out.println("Insira um valor valido");
+                                            JOptionPane.showMessageDialog(null,"Insira um valor valido");
                                     }
                                 }catch (NoSuchElementException e){
-                                    System.out.println("Insira um valor valido");
+                                    JOptionPane.showMessageDialog(null,"Insira um valor valido");
                                     continue;
                                 }
                             }
                             break;
 
                         case 2:
-                            System.out.println("Obrigado por jogar:");
+                            JOptionPane.showMessageDialog(null,"Obrigado por jogar:");
                             progresso = +1;
                             break;
                         default:
-                            System.out.println("Insira um valor valido");
+                            JOptionPane.showMessageDialog(null,"Insira um valor valido");
                             progresso = +1;
                             break;
                     }
                 }catch (NoSuchElementException e){
-                    System.out.println("Insira um valor valido");
+                    JOptionPane.showMessageDialog(null,"Insira um valor valido");
                     continue;
                 }
             }

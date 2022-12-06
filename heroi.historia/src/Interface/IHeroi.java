@@ -1,11 +1,9 @@
 package Interface;
 
-import dao.IBolsa;
-
 public interface IHeroi{
     public void abrirInventario();
-    public void ferramenta1();
-    public void ferramenta2();
-    public void defender();
-    public void esquivar();
+    public Object ferramenta1();
+    public Object ferramenta2();
+    public Object defender();
+    public Object esquivar();
 }

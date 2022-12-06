@@ -109,22 +109,23 @@ public class Heroi implements IHeroi {
     }
 
     @Override
-    public void ferramenta1() {
-        System.out.println("Voce utilizou o(a) "+ this.ferramenta1 + "!");
+    public Object ferramenta1() {
+        return "Voce utilizou o(a) "+ this.ferramenta1 + "!";
     }
 
     @Override
-    public void ferramenta2() {
-        System.out.println("Voce utilizou o(a) " + this.ferramenta2+"!");
+    public Object ferramenta2() {
+
+        return "Voce utilizou o(a) " + this.ferramenta2+"!";
     }
 
     @Override
-    public void defender() {
-        System.out.println("Voce se defendeu!");
+    public Object defender() {
+        return "Voce se defendeu!";
     }
 
     @Override
-    public void esquivar() {
-        System.out.println("Voce se esquivou!");
+    public Object esquivar() {
+        return"Voce se esquivou!";
     }
 }
